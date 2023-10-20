@@ -1,0 +1,28 @@
+DECLARE queue ARRAY[0:9] OF <Data Type>
+DECLARE endPointer : INTEGER
+DECLARE startPointer : INTEGER
+
+endPointer <- 0
+startPointer <- 0
+
+FUNCTION Enqueue(item: <Data Type>)
+  IF startPointer < LENGTH(queue) THEN
+    queue[startPointer] <- item
+    startPointer <- startPointer + 1
+  ELSE
+    OUTPUT("Error: Queue is full")
+  ENDIF
+ENDFUNCTION
+
+FUNCTION Dequeue() : <Data Type>
+  DECLARE item : <Data Type>
+  item <- null
+  IF endPointer = startPointer THEN
+    OUTPUT("Error: Queue is empty")
+  ELSE
+    item = queue[endPointer]
+    endPointer <- endPointer + 1
+    RETURN item
+  ENDIF
+  RETURN item
+ENDFUNCTION
